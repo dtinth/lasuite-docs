@@ -31,7 +31,7 @@ export const EmojiPicker = ({
       $position="absolute"
       $zIndex={1000}
       $margin="2rem 0 0 0"
-      onKeyDown={handleKeyDown}
+      onKeyDownCapture={handleKeyDown}
     >
       <Picker
         data={emojiData}
