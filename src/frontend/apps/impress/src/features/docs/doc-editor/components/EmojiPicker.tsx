@@ -1,6 +1,6 @@
 import { EmojiMartData } from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box } from '@/components';
@@ -20,24 +20,19 @@ export const EmojiPicker = ({
 }: EmojiPickerProps) => {
   const { i18n } = useTranslation();
 
-  // Handle Escape key to close the picker
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        e.stopPropagation();
-        onClickOutside();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape, true);
-    return () => {
-      document.removeEventListener('keydown', handleEscape, true);
-    };
-  }, [onClickOutside]);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Escape') {
+      onClickOutside();
+    }
+  };
 
   const pickerContent = (
-    <Box $position="absolute" $zIndex={1000} $margin="2rem 0 0 0">
+    <Box
+      $position="absolute"
+      $zIndex={1000}
+      $margin="2rem 0 0 0"
+      onKeyDown={handleKeyDown}
+    >
       <Picker
         data={emojiData}
         locale={i18n.resolvedLanguage}
