@@ -46,6 +46,11 @@ and this project adheres to
 - 🐛(frontend) fix children not display when first resize #1753
 - 🐛(frontend) fix clickable main content regression #1773
 
+### Changed
+
+- ♿(frontend) improve accessibility:
+  - ♿️(frontend) fix subdoc opening and emoji pick focus #1745
+
 ## [4.2.0] - 2025-12-17
 
 ### Added
@@ -63,7 +68,6 @@ and this project adheres to
 - 🌐(backend) internationalize demo #1644
 - ♿(frontend) improve accessibility:
   - ♿️Improve keyboard accessibility for the document tree #1681
-  - ♿️(frontend) fix subdoc opening and emoji pick focus #1745
 
 ### Fixed
 
