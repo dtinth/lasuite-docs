@@ -7,6 +7,7 @@ from lasuite.oidc_login.urls import urlpatterns as oidc_urls
 from rest_framework.routers import DefaultRouter
 
 from core.api import viewsets
+from core.api.viewsets import ReconciliationConfirmView
 
 # - Main endpoints
 router = DefaultRouter()
@@ -46,6 +47,11 @@ thread_related_router.register(
 
 
 urlpatterns = [
+    # Confirmation links for user reconciliation sent by email
+    path(
+        "user_reconciliations/<str:user_type>/<uuid:confirmation_id>/",
+        ReconciliationConfirmView.as_view(),
+    ),
     path(
         f"api/{settings.API_VERSION}/",
         include(
