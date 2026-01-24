@@ -164,9 +164,6 @@ class Base(Configuration):
     AWS_S3_REGION_NAME = values.Value(
         environ_name="AWS_S3_REGION_NAME", environ_prefix=None
     )
-    AWS_S3_SIGNATURE_VERSION = values.Value(
-        "s3v4", environ_name="AWS_S3_SIGNATURE_VERSION", environ_prefix=None
-    )
     AWS_STORAGE_BUCKET_NAME = values.Value(
         "impress-media-storage",
         environ_name="AWS_STORAGE_BUCKET_NAME",

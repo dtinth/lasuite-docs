@@ -20,7 +20,6 @@ These are the environment variables you can set for the `impress-backend` contai
 | AWS_S3_ACCESS_KEY_ID                            | Access id for s3 endpoint                                                                                                                                                  |                                                                         |
 | AWS_S3_ENDPOINT_URL                             | S3 endpoint                                                                                                                                                                |                                                                         |
 | AWS_S3_REGION_NAME                              | Region name for s3 endpoint                                                                                                                                                |                                                                         |
-| AWS_S3_SIGNATURE_VERSION                        | S3 signature version (`s3v4` or `s3`)                                                                                                                                      | s3v4                                                                    |
 | AWS_S3_SECRET_ACCESS_KEY                        | Access key for s3 endpoint                                                                                                                                                 |                                                                         |
 | AWS_STORAGE_BUCKET_NAME                         | Bucket name for s3 endpoint                                                                                                                                                | impress-media-storage                                                   |
 | CACHES_DEFAULT_TIMEOUT                          | Cache default timeout                                                                                                                                                      | 30                                                                      |
@@ -159,3 +158,4 @@ Packages with licences incompatible with the MIT licence:
 In `.env.development`, `PUBLISH_AS_MIT` is set to `false`, allowing developers to test Docs with all its features.
 
 ⚠️ If you run Docs in production with `PUBLISH_AS_MIT` set to `false` make sure you fulfill your BlockNote licensing or [subscription](https://www.blocknotejs.org/about#partner-with-us) obligations.
+

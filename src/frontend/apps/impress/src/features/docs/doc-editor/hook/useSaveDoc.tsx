@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
-import { VariantType, useToastProvider } from '@gouvfr-lasuite/cunningham-react';
-import { useTranslation } from 'react-i18next';
 import * as Y from 'yjs';
 
 import { useUpdateDoc } from '@/docs/doc-management/';
@@ -17,23 +15,9 @@ export const useSaveDoc = (
   yDoc: Y.Doc,
   isConnectedToCollabServer: boolean,
 ) => {
-  const { t } = useTranslation();
-  const { toast } = useToastProvider();
-
   const { mutate: updateDoc } = useUpdateDoc({
     listInvalidQueries: [KEY_LIST_DOC_VERSIONS],
     onSuccess: () => {
-      setIsLocalChange(false);
-    },
-    onError: (error) => {
-      // Notify the user if auto-save fails
-      toast(
-        t('The document could not be saved. Please check your connection.'),
-        VariantType.ERROR,
-        {
-          duration: 3000,
-        },
-      );
       setIsLocalChange(false);
     },
   });
