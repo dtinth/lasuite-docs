@@ -12,6 +12,22 @@ vi.mock('next/router', () => ({
   useRouter: vi.fn(),
 }));
 
+const toastMock = vi.fn();
+
+vi.mock('@gouvfr-lasuite/cunningham-react', async () => ({
+  ...(await vi.importActual('@gouvfr-lasuite/cunningham-react')),
+  useToastProvider: () => ({
+    toast: toastMock,
+  }),
+}));
+
+vi.mock('react-i18next', async () => ({
+  ...(await vi.importActual('react-i18next')),
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
 vi.mock('@/docs/doc-versioning', () => ({
   KEY_LIST_DOC_VERSIONS: 'test-key-list-doc-versions',
 }));
@@ -125,6 +141,32 @@ describe('useSaveDoc', () => {
     expect(fetchMock.calls().length).toBe(0);
 
     vi.useRealTimers();
+  });
+
+  it('should show a toast when save fails', async () => {
+    vi.useFakeTimers();
+    const yDoc = new Y.Doc();
+    const docId = 'test-doc-id';
+
+    fetchMock.patch('http://test.jest/api/v1.0/documents/test-doc-id/', 500);
+
+    renderHook(() => useSaveDoc(docId, yDoc, true), {
+      wrapper: AppWrapper,
+    });
+
+    act(() => {
+      yDoc.getMap('test').set('key', 'value');
+    });
+
+    act(() => {
+      vi.advanceTimersByTime(61000);
+    });
+
+    vi.useRealTimers();
+
+    await waitFor(() => {
+      expect(toastMock).toHaveBeenCalled();
+    });
   });
 
   it('should cleanup event listeners on unmount', () => {
